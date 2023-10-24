@@ -1,15 +1,13 @@
 const container = document.querySelector('.cup');
 const cups = Array.from(document.querySelector(".cups").children);
-console.log(cups);
 const totalCups = cups.length;
-console.log(totalCups);
-
+const liters = document.getElementById('liters');
 
 
 for (let i = 0; i < cups.length; i++) {
     // console.log(cups[i]);
     cups[i].addEventListener('click', () => {
-        console.log(cups[i]);
+        // console.log(cups[i]);
         cups[i].classList.add('full');
 
         if (cups.indexOf(cups[i]) !== 0) {
@@ -27,6 +25,11 @@ for (let i = 0; i < cups.length; i++) {
         percentage.style.opacity = 1;
         percentage.style.height = `${(fullCups / totalCups) * 330}px`;
         percentage.innerText = `${(fullCups / totalCups) * 100}%`;
+        if (fullCups === totalCups) {
+            liters.innerText = "0L";
+        } else {
+            liters.innerText = `${2 - (250 * fullCups / 1000)}L`;
+        }
     })
 }
 
